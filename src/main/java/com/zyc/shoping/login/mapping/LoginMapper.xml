@@ -5,7 +5,7 @@
 <mapper namespace="com.zyc.shoping.login.dao.ILoginDao">  
 
     <select id="findByLoginId" parameterType="java.util.Map" resultType="com.zyc.shoping.user.model.User">  
-        select user_name userName,age  from user where login_id=#{loginId} and passward=#{passward} 
+        select user_name userName,age  from sys_user where login_id=#{loginId} and passward=#{passward} 
     </select>  
       
 </mapper> 

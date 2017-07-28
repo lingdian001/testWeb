@@ -18,7 +18,7 @@
     <!--所有的访问都统一先由InternalResourceViewResolver类处理-->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <!--定义跳转的文件的前缀（jsp文件所在目录）-->
-        <property name="prefix" value="/WEB-INF/jsp/" />
+        <property name="prefix" value="/" />
         <!-- 定义跳转的文件的后缀 -->
         <property name="suffix" value=".jsp" />
     </bean>
