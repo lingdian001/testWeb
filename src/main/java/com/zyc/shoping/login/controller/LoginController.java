@@ -31,7 +31,7 @@ public class LoginController{
 		User user=loginService.login("zyc", "123456");
 		mv.addObject("user", user);  
 		mv.addObject("message", "Hello World!");  
-		mv.setViewName("WEB-INF/jsp/login_success");  
+		mv.setViewName("WEB-INF/jsp/admin");  
 		return mv;  
 	}
 	
