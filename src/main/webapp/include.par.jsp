@@ -12,4 +12,14 @@
 	<script type="text/javascript" src="<%=baseUrl%>/js/jquery-1.10.2.min.js"></script>
 	<script src="<%=baseUrl%>/js/bootstrap-3.0.3/js/bootstrap.min.js" type="text/javascript"></script>
 	<link rel="stylesheet" type="text/css" href="<%=baseUrl%>/js/bootstrap-3.0.3/css/bootstrap.min.css" />
+	<script type="text/javascript">
+		var projectUrl;
+		$(function(){
+			projectUrl=$("#projectUrl").val();
+		});
+	
+	</script>
+	
 </head>
+	<input type="hidden" id="projectUrl" value="<%=baseUrl%>">
+</html>
