@@ -13,7 +13,7 @@
 		 * 改变标签的内容
 		 */
 		function changeTab(tabName,pageName){
-			$('#myTab a:first').html(tabName);
+			//$('#myTab a:first').html(tabName);
 			var url=projectUrl+"/sys/toFunPage.do?pageName="+pageName;
 			$("#iframePage").attr("src",url);
 		}
@@ -26,7 +26,7 @@
 	
 
 	<!-- main -->
-	<div class="container">
+	<div class="container" style="background-color: #fafafa">
 		<div style="height: 50px" >
 	     	后台管理系统
 	    </div>
@@ -43,14 +43,7 @@
 			</div>
 			
 			<div class="col-xs-6 col-sm-9 col-md-10 ">
-				<ul id="myTab" class="nav nav-tabs">
-					<li class="active"><a href="#home" data-toggle="tab" >后台管理</a></li>
-				</ul>
-				<div id="myTabContent" class="tab-content">
-					<div class="tab-pane fade in active" id="home">
-						<iframe id="iframePage" src="" width="100%" height="590px" frameborder="0"></iframe> 
-					</div>
-				</div>
+				<iframe id="iframePage" src="" width="100%" height="590px" frameborder="0"></iframe>
 			</div>
 			
 		</div>
