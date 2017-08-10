@@ -7,7 +7,7 @@ import com.zyc.shoping.user.model.User;
 public interface IUserDao {
 	public void save(User user);  
 	public boolean update(User user);  
-	public boolean delete(int id);  
-	public User findById(int id);  
+	public boolean delete(String loginId);  
+	public User findById(String loginId);  
 	public List<User> findAll(); 
 }

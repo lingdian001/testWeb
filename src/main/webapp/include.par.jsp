@@ -9,9 +9,17 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="shortcut icon" href="<%=baseUrl%>/images/favicon2.ico">
+	<link rel="stylesheet" type="text/css" href="<%=baseUrl%>/js/bootstrap-3.0.3/css/bootstrap.min.css" />
+	<!--  
+	<link rel="stylesheet" type="text/css" href="<%=baseUrl%>/js/bootstrap-3.0.3/plugins/table/bootstrap-table.css" />
+	-->
+	
 	<script type="text/javascript" src="<%=baseUrl%>/js/jquery-1.10.2.min.js"></script>
 	<script src="<%=baseUrl%>/js/bootstrap-3.0.3/js/bootstrap.min.js" type="text/javascript"></script>
-	<link rel="stylesheet" type="text/css" href="<%=baseUrl%>/js/bootstrap-3.0.3/css/bootstrap.min.css" />
+    <script src="<%=baseUrl%>/js/bootstrap-3.0.3/plugins/table/bootstrap-table.min.js" type="text/javascript"></script> 
+	<script src="<%=baseUrl%>/js/bootstrap-3.0.3/plugins/table/bootstrap-table-zh-CN.min.js" type="text/javascript"></script> 
+	<script src="<%=baseUrl%>/js/util/bootstrapUtil.js" type="text/javascript"></script>
+	
 	<script type="text/javascript">
 		var projectUrl;
 		$(function(){
