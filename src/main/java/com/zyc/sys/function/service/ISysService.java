@@ -1,7 +1,7 @@
 package com.zyc.sys.function.service;
 
-import com.zyc.user.model.User;
+import com.zyc.business.user.model.UserVo;
 
 public interface ISysService {
-	public User login(String loginId,String passward);
+	public UserVo login(String loginId,String passward);
 }

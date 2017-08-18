@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
   
-<mapper namespace="com.zyc.shoping.sys.dao.ISysDao">  
+<mapper namespace="com.zyc.sys.function.dao.ISysDao">  
 
-    <select id="findByLoginId" parameterType="java.util.Map" resultType="com.zyc.shoping.user.model.User">  
+    <select id="findByLoginId" parameterType="java.util.Map" resultType="com.zyc.business.user.model.UserPo">  
         select user_name userName,age  from sys_user where login_id=#{loginId} and passward=#{passward} 
     </select>  
       

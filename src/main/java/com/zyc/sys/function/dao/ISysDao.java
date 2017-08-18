@@ -2,7 +2,7 @@ package com.zyc.sys.function.dao;
 
 import java.util.Map;
 
-import com.zyc.user.model.User;
+import com.zyc.business.user.model.UserVo;
 
 public interface ISysDao {
 	/**
@@ -10,6 +10,6 @@ public interface ISysDao {
 	 * @param param
 	 * @return
 	 */
-	public User findByLoginId(Map<String,String> param);
+	public UserVo findByLoginId(Map<String,String> param);
 
 }

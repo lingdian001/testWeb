@@ -9,7 +9,7 @@
                         http://www.springframework.org/schema/context/spring-context-3.1.xsd    
                         ">  
     <!-- 自动扫描 -->  
-    <context:component-scan base-package="com.zyc.shoping" />  
+    <context:component-scan base-package="com.zyc" />  
     <!-- 引入配置文件 -->  
     <bean id="propertyConfigurer"  
         class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
@@ -38,13 +38,18 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">  
         <property name="dataSource" ref="dataSource" />  
     	<property name="configLocation" value="classpath:config/mybatis.xml" /> 
-    	<property name="mapperLocations" value="classpath:com/zyc/shoping/*/mapping/*.xml"></property>
+    	<property name="mapperLocations" value="classpath:com/zyc/*/*/mapping/*.xml"></property>
     </bean> 
-    
+    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" scope="prototype" >
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
     <!-- DAO接口所在包名，Spring会自动查找其下的类 -->  
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
-        <property name="basePackage" value="com.zyc.shoping.*.dao" />  
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    	<property name="sqlSessionTemplateBeanName" value="sqlSessionTemplate" />  
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>  
+        <!-- MapperScannerConfigurer将只注册继承自markerInterface的接口  -->
+		<property name="markerInterface" value="com.zyc.sys.base.dao.IBaseDao" />
+        <property name="basePackage" value="com.zyc.*.*.dao" />  
     </bean>  
   
     <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->  

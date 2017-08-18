@@ -6,12 +6,11 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.zyc.login.dao.ILoginDao;
-import com.zyc.login.service.ILoginService;
-import com.zyc.user.model.User;
+import com.zyc.business.login.dao.ILoginDao;
+import com.zyc.business.user.model.UserPo;
 
 @Service("sysService")
-public class SysServiceImpl implements ILoginService{
+public class SysServiceImpl {
 	@Autowired
 	private ILoginDao loginDao;
 	
@@ -21,7 +20,7 @@ public class SysServiceImpl implements ILoginService{
 	  * @param @param passward
 	  * @param @return    
 	 */
-	public User login(String loginId,String passward) {
+	public UserPo login(String loginId,String passward) {
 		Map<String, String> param = new HashMap<String,String>();
 		param.put("loginId", loginId);
 		param.put("passward", passward);

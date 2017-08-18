@@ -3,11 +3,13 @@
 /**
  * 初始化表格,实现复选框s
  * **/
-function initTableCheckbox() {
-	var $thr = $('table thead tr');
+function initTableCheckbox(tableId) {
+	var $thr = $('#'+tableId+' thead tr');
 	var $checkAllTh = $('<th><input type="checkbox" id="checkAll" name="checkAll" /></th>');
 	/* 将全选/反选复选框添加到表头最前，即增加一列 */
-	$thr.prepend($checkAllTh);
+	if($('table thead tr #checkAll').html()==undefined){
+		 $thr.prepend($checkAllTh);
+	 }
 	/* “全选/反选”复选框 */
 	var $checkAll = $thr.find('input');
 	$checkAll.click(function(event) {
