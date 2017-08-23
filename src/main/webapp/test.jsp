@@ -15,99 +15,14 @@
 <link rel="shortcut icon" href="img/favicon.ico">
 
 <script type="text/JavaScript">
-	$(function() {
-		var height = document.documentElement.clientHeight;
-		document.getElementById('iframe-page-content').style.height = height
-				- 60 + 'px';
-	});
-
-	var menuClick = function(menuUrl) {
-		$("#iframe-page-content").attr('src', menuUrl);
-	};
+	
 </script>
 
 </head>
 
 <body>
-
-	<div style="width: 100%;" >
-
-		<!-- 左侧菜单栏 -->
-
-		<div id="main-Container">
-
-			<div id="sidebar" class="col-md-2 column" style="height: 300px;overflow-y: auto">
-
-				<!-- 创建菜单树 -->
-
-				<div class="col-md-12">
-					<ul id="main-nav" class="nav nav-tabs nav-stacked" >
-						<li>
-								<a href="#systemSetting" class="nav-header collapsed"
-									data-toggle="collapse"> <i class="glyphicon glyphicon-cog"></i>index
-										<span class="pull-right glyphicon glyphicon-chevron-down"></span>
-								</a>
-								<ul id="systemSetting" class="nav nav-list collapse secondmenu"
-									style="height: 0px;">
-									<li><a href="#"
-										onclick="menuClick('${base}toViewInfo?id=${s.id}')"><i
-											class="glyphicon glyphicon-user"></i>aaa</a></li>
-									<li><a href="#" onclick="menuClick('${base}toTestList')"><i
-											class="glyphicon glyphicon-th-list"></i>bbb</a></li>
-								</ul>
-						</li>
-
-						<li>
-							<a href="#systemSetting1" class="nav-header collapsed"
-								data-toggle="collapse"> <i class="glyphicon glyphicon-cog"></i>index1
-									<span class="pull-right glyphicon glyphicon-chevron-down"></span>
-							</a>
-
-							<ul id="systemSetting1" class="nav nav-list collapse secondmenu"
-								style="height: 0px;">
-								<li><a href="#"><i class="glyphicon glyphicon-asterisk"></i>ccc</a></li>
-								<li><a href="#"><i class="glyphicon glyphicon-edit"></i>ddd</a></li>
-								<li><a href="#"><i class="glyphicon glyphicon-eye-open"></i>eee</a></li>
-							</ul>
-						</li>
-						<li>
-							<a href="#systemSetting3" class="nav-header collapsed"
-								data-toggle="collapse"> <i class="glyphicon glyphicon-cog"></i>index1
-									<span class="pull-right glyphicon glyphicon-chevron-down"></span>
-							</a>
-
-							<ul id="systemSetting3" class="nav nav-list collapse secondmenu"
-								style="height: 0px;">
-								<li><a href="#"><i class="glyphicon glyphicon-asterisk"></i>ccc</a></li>
-								<li><a href="#"><i class="glyphicon glyphicon-edit"></i>ddd</a></li>
-								<li><a href="#"><i class="glyphicon glyphicon-eye-open"></i>eee</a></li>
-							</ul>
-						</li>
-						
-					</ul>
-				</div>
-			</div>
-
-			<div class="col-md-10 column">
-				<div class="breadcrumbs" id="breadcrumbs">
-					<!-- 面包屑导航 -->
-					<ul class="breadcrumb">
-						<li>Home</li>
-						<li class="active">Dashboard</li>
-					</ul>
-				</div>
-				<!-- 内容展示页 -->
-				<div>
-					<iframe id="iframe-page-content" src="test2.jsp" width="100%"
-						height="100%" frameborder="no" border="0" marginwidth="0"
-						marginheight=" 0" scrolling="auto" allowtransparency="yes"></iframe>
-				</div>
-			</div>
-			<!-- /.main-content -->
-
-		</div>
-		<!-- /.main-container -->
-
-	</div>
+	<h2>引导主体副本</h2>
+<p class="lead">这是一个演示引导主体副本用法的实例。这是一个演示引导主体副本用法的实例。这是一个演示引导主体副本用法的实例。这是一个演示引导主体副本用法的实例。这是一个演示引导主体副本用法的实例。这是一个演示引导主体副本用法的实例。这是一个演示引导主体副本用法的实例。这是一个演示引导主体副本用法的实例。</p>
+	
 
 </body>
