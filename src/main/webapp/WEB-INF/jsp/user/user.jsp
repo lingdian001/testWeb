@@ -12,13 +12,18 @@
 	<title>用户列表</title>
 	<script type="text/javascript">
 		$(function(){
-	        //initTableCheckbox();  
+	        //initTableCheckbox(); 
+			addUserForm();
 	    });
+		
+		function test(){
+			alert('i am child');
+		}
 		
 		
 		/**增加用户**/
 		function addBtn(){
-			window.parent.openMainModal($('#addUsermodal').html());
+			window.parent.openMainModal($('#mainModal').html());
 		}
 		
 		/**查询所有用户**/
@@ -71,12 +76,6 @@
 							valign : 'middle'
 						},
 						{
-							title : '性别',
-							field : 'sex',
-							align : 'center',
-							valign : 'middle',
-						},
-						{
 							title : '邮箱',
 							field : 'email',
 							align : 'center'
@@ -94,6 +93,7 @@
 				        },
 				        onLoadSuccess: function(){
 				        	initTableCheckbox('pageTable');
+				        	$('#resultDiv').show();
 				        }
 			});
 			
@@ -109,6 +109,101 @@
 			
 		}
 
+		/**增加用户表单验证**/
+		function addUserForm(){
+			$('#addUserForm').bootstrapValidator({
+				message: '无效的值',
+		        feedbackIcons: {
+		            valid: 'glyphicon glyphicon-ok',
+		            invalid: 'glyphicon glyphicon-remove',
+		            validating: 'glyphicon glyphicon-refresh'
+		        },
+		        fields: {
+		        	loginId: {
+		                message: '登录账号无效',
+		                validators: {
+		                    notEmpty: {
+		                        message: '登录账号不能为空'
+		                    },
+		                    stringLength: {
+		                        min: 6,
+		                        max: 30,
+		                        message: '长度在6-30之间'
+		                    },
+		                    regexp: {
+		                        regexp: /^[a-zA-Z0-9_\.]+$/,
+		                        message: '登录账号包含字母，数字，下划线，点'
+		                    },
+		                    remote: {
+		                        type: 'POST',
+		                        url: 'checkUser.do',
+		                        message: '此登录账号已经存在了'
+		                    },
+		                    different: {
+		                        field: 'password,confirmPassword',
+		                        message: '密码和确认密码不一致'
+		                    }
+		                }
+		            },
+		            password: {
+		                validators: {
+		                    notEmpty: {
+		                        message: '密码不能为空'
+		                    },
+		                    identical: {
+		                        field: 'confirmPassword',
+		                        message: '密码和确认密码不相同'
+		                    },
+		                    different: {
+		                        field: 'username',
+		                        message: '登录账号和密码不能相同'
+		                    }
+		                }
+		            },
+		            confirmPassword: {
+		                validators: {
+		                    notEmpty: {
+		                        message: '确认密码不能为空'
+		                    },
+		                    identical: {
+		                        field: 'password',
+		                        message: '密码和确认密码不相同'
+		                    },
+		                    different: {
+		                        field: 'userName',
+		                        message: '登录账号和密码不能相同'
+		                    }
+		                }
+		            },
+		            telphone: {
+		                 validators: {
+		                     notEmpty: {
+		                         message: '手机号码不能为空'
+		                     },
+		                     stringLength: {
+		                         min: 11,
+		                         max: 11,
+		                         message: '请输入11位手机号码'
+		                     },
+		                     regexp: {
+		                         regexp: /^1[3|5|8]{1}[0-9]{9}$/,
+		                         message: '请输入正确的手机号码'
+		                     }
+		                 }
+		             },
+		             email: {
+		                validators: {
+		                    emailAddress: {
+		                        message: '邮箱地址格式不正确'
+		                    }
+		                }
+			         },
+			            
+		            
+		        }
+			});
+			
+		}
 		
 	</script>
 </head>
@@ -118,10 +213,7 @@
 
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12">
-				<fieldset>
-					<legend style="color: #428bca">查询条件</legend>
-					<div style="padding: 0px 20px 40px;">
-
+				<div style="padding: 0px 20px 40px;">
 						<form class="form-inline">
 							<div class="form-group">
 								<label>登录账号：</label> <input type="text" class="form-control"
@@ -136,23 +228,27 @@
 								<button type="button" class="btn btn-primary"
 									onclick="findall()">查询</button>
 							</div>
+							
+							<div class="form-group" style="padding-left: 50px">
+								<button type="button" class="btn btn-default btn-sm"
+									onclick="addBtn()">
+									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+								</button>
+							</div>
+							
+							
+							
 						</form>
-					</div>
-				</fieldset>
-
-				<fieldset>
-					<legend style="color: #428bca">查询结果</legend>
+				 </div>
+				 
+				 <div id="resultDiv" style="display: none;">
 					<div class="panel-body">
 						<div class="list-op" id="list_op">
-							<button id="addBtn" type="button" class="btn btn-default btn-sm"
-								onclick="addBtn()">
-								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
-							</button>
-							<button id="editBtn" type="button" class="btn btn-default btn-sm"
+							<button type="button" class="btn btn-default btn-sm"
 								onclick="edit()">
 								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
 							</button>
-							<button id="delBtn" type="button" class="btn btn-default btn-sm"
+							<button type="button" class="btn btn-default btn-sm"
 								onclick="del()">
 								<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
 							</button>
@@ -161,86 +257,78 @@
 					<table class="table table-striped table-bordered table-hover"
 						id="pageTable">
 					</table>
-				</fieldset>
+				 </div>
+
 
 			</div>
 		</div>
 
 
 		<!-- 模态弹出窗内容 -->
-		<div style="visibility: hidden;" id='addUsermodal'>
-			<div class="modal fade in" id="mainModal">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">
-								<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-							</button>
-							<h4 class="modal-title">增加用户</h4>
-						</div>
-						<div class="modal-body">
-							<form class="form-horizontal">
-								<div class="form-group">
-									<label class="col-sm-2 control-label">登录账号</label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="loginId"
-											placeholder="登录账号">
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label class="col-sm-2 control-label">密码</label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="passward"
-											placeholder="密码">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">用户名</label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="username"
-											placeholder="用户名">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">性别</label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="sex"
-											placeholder="性别">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">年龄</label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="age"
-											placeholder="年龄">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">电话</label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="telphone"
-											placeholder="电话">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">邮箱</label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="email"
-											placeholder="邮箱">
-									</div>
-								</div>
-
-							</form>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">关闭</button>
-							<button type="button" class="btn btn-primary">保存</button>
-						</div>
+		<div class="modal fade in" >
+			<div class="modal-dialog">
+				<div class="modal-content" id="mainModal">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+						</button>
+						<h4 class="modal-title">增加用户</h4>
 					</div>
+					<div class="modal-body">
+						<form class="form-horizontal" id='addUserForm'>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">登录账号</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" name="loginId"
+										placeholder="登录账号">
+								</div>
+							</div>
 
+							<div class="form-group">
+								<label class="col-sm-2 control-label">密码</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" name="passward"
+										placeholder="密码">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">确认密码</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" name="confirmPassword"
+										placeholder="确认密码">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户名</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" name="userName"
+										placeholder="用户名">
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-sm-2 control-label">电话</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="telphone"
+										placeholder="电话">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">邮箱</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="email"
+										placeholder="邮箱">
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default"
+							data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary" onclick="parent.callSubMethod('addUserForm')">保存</button>
+					</div>
 				</div>
+
 			</div>
 		</div>
 

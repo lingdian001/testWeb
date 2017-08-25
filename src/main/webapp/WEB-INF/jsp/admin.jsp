@@ -9,15 +9,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>首页</title>
 	<style type="text/css">
-	 	.navUl{background-color:#111111 }
 	
 	</style>
 	
 	<script type="text/javascript">
 		$(function(){
 			var height=document.documentElement.clientHeight;
-			document.getElementById('iframePage').style.height=height-260+'px';
-			//document.getElementById('sidebar').style.height=height-160+'px';
+			document.getElementById('iframePage').style.height=height-190+'px';
+			//document.getElementById('sidebar').style.height=height-120+'px';
 			changeTab('后台管理','welcome');
 		});
 	
@@ -45,6 +44,11 @@
 			var aa=$("#mainModal .modal-content").html(contentHtml);
 			$("#mainModal").modal({ backdrop: 'static'});
 		}
+		
+		/**调用子页面方法**/
+		function callSubMethod(methodName){
+			document.getElementById("iframePage").contentWindow.eval(methodName+'()');
+		}
 	
 	</script>
 </head>
@@ -52,18 +56,23 @@
 	
 
 	<!-- main -->
-	<div class="container" style="">
-		<div class="row " >
-			<div class="col-xs-12 col-sm-12 col-md-12" style="background-color: #EAF3FB" >
-		     	<h3 class="text-center"><strong>后台管理系统</strong></h3>
+	<div class="container">
+		<div class="row " style="margin-bottom: 5px">
+			<div class="text-right" style="background-color: #F6F6F6" >
+		     	<span class="glyphicon glyphicon-user"></span> zyc  &nbsp;&nbsp;&nbsp;&nbsp;
+		     	<a href="#">退出</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		     	<a href="javascript:callSubMethod('test')">测试</a>
 		    </div>
-		    
-			<div id="sidebar" class="col-xs-12 col-sm-3 col-md-2" style="background-color:#F1F9FC;overflow-y: auto">
+		</div>
+		
+	
+		<div class="row " >
+			<div id="sidebar" class="col-xs-12 col-sm-3 col-md-2" style="overflow-y: auto;border: 2px solid #F6F6F6;">
 				<!-- 创建菜单树 -->
 				<div class="col-md-12">
 					<ul id="main-nav" class="nav nav-tabs nav-stacked" >
 						<li >
-							<a href="#userFun" class="nav-header collapsed" data-toggle="collapse"> 
+							<a href="#userFun" class="nav-header collapsed" data-toggle="collapse" > 
 								<i class="glyphicon glyphicon-cog"></i>
 								<span>系统管理</span> 
 								<span class="pull-right glyphicon glyphicon-chevron-down"></span>
@@ -101,12 +110,12 @@
 				</div>
 			</div>
 			
-			<div class="col-xs-12 col-sm-9 col-md-10 ">
+			<div class="col-xs-12 col-sm-9 col-md-10 " >
 				<!-- 面包屑导航 -->
-				<ol class="breadcrumb" style="background-color:#F1F9FC;width: 300px" id='breadcrumb'>
+				<ol class="breadcrumb" style="background-color:#F6F6F6;width: 300px" id='breadcrumb'>
 				</ol>
-				<div class="panel panel-default">
-				    <div class="panel-body">
+				<div class="panel panel-default" style="margin-bottom: 0px">
+				    <div class="panel-body" >
  						<iframe  id="iframePage" src="" width="100%" height="100%" scrolling="auto" frameborder="no" ></iframe>				    
 				    </div>
 				</div>
@@ -116,7 +125,7 @@
 
 		<hr/>
 		<footer>
-			<p>&copy; Company 2013</p>
+			<p>&copy; Company 2017</p>
 		</footer>
 		
 		
