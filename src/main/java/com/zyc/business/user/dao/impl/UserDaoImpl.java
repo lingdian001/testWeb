@@ -1,5 +1,7 @@
 package com.zyc.business.user.dao.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.zyc.business.user.dao.IUserDao;
@@ -12,27 +14,23 @@ import com.zyc.sys.base.model.CurrentPage;
 public class UserDaoImpl extends BaseDaoImpl<UserPo,UserVo> implements IUserDao{
 
 	@Override
-	public void save(UserVo user) {
-		// TODO Auto-generated method stub
-		
+	public UserPo save(UserPo userPo) {
+		return this.createObject("save", userPo);
 	}
 
 	@Override
-	public boolean update(UserVo user) {
-		// TODO Auto-generated method stub
-		return false;
+	public int update(UserPo userPo) {
+		return this.updateObjectReturnInt("update", userPo);
 	}
 
 	@Override
-	public boolean delete(String loginId) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean delete(List<UserPo> userPoList) {
+		return this.batchDelete("delete", userPoList);
 	}
 
 	@Override
-	public UserVo findById(String loginId) {
-		// TODO Auto-generated method stub
-		return null;
+	public UserPo findById(String loginId) {
+		return this.queryById("selectById", loginId);
 	}
 
 	/**

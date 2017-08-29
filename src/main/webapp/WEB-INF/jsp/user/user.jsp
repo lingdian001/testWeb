@@ -13,7 +13,7 @@
 	<script type="text/javascript">
 		$(function(){
 	        //initTableCheckbox(); 
-			addUserForm();
+			//addUserForm();
 	    });
 		
 		function test(){
@@ -24,6 +24,7 @@
 		/**增加用户**/
 		function addBtn(){
 			window.parent.openMainModal($('#mainModal').html());
+			window.parent.callSubMethod('initCheckUserForm');
 		}
 		
 		/**查询所有用户**/
@@ -109,9 +110,9 @@
 			
 		}
 
-		/**增加用户表单验证**/
-		function addUserForm(){
-			$('#addUserForm').bootstrapValidator({
+		/**初始化用户表单验证**/
+		function initCheckUserForm(){
+			$('#addUserForm',window.parent.document).bootstrapValidator({
 				message: '无效的值',
 		        feedbackIcons: {
 		            valid: 'glyphicon glyphicon-ok',
@@ -136,7 +137,7 @@
 		                    },
 		                    remote: {
 		                        type: 'POST',
-		                        url: 'checkUser.do',
+		                        url: projectUrl+'/user/checkUser.do',
 		                        message: '此登录账号已经存在了'
 		                    },
 		                    different: {
@@ -150,13 +151,16 @@
 		                    notEmpty: {
 		                        message: '密码不能为空'
 		                    },
-		                    identical: {
-		                        field: 'confirmPassword',
-		                        message: '密码和确认密码不相同'
-		                    },
 		                    different: {
-		                        field: 'username',
+		                        field: 'loginId',
 		                        message: '登录账号和密码不能相同'
+		                    }
+		                }
+		            },
+		            userName: {
+		                validators: {
+		                    notEmpty: {
+		                        message: '用户名不能为空'
 		                    }
 		                }
 		            },
@@ -168,10 +172,6 @@
 		                    identical: {
 		                        field: 'password',
 		                        message: '密码和确认密码不相同'
-		                    },
-		                    different: {
-		                        field: 'userName',
-		                        message: '登录账号和密码不能相同'
 		                    }
 		                }
 		            },
@@ -203,6 +203,27 @@
 		        }
 			});
 			
+		}
+		
+		/**保存用户**/
+		function addUser(){
+			$.ajax({
+				type :'POST',
+		        url : projectUrl+'',
+		        data : $('#addUserForm',window.parent.document).serializeArray(),
+		        dataType : "json",
+		        cache : false,
+		        success : function(re){
+		        	if(re==true){
+		        		alert('success');
+		        	}else{
+		        		alert('error');
+		        	}
+		        },
+		        error : function(XMLHttpRequest, textStatus, errorThrown){
+		        	alert(errorThrown);
+		        }
+			});
 		}
 		
 	</script>
@@ -287,7 +308,7 @@
 							<div class="form-group">
 								<label class="col-sm-2 control-label">密码</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" name="passward"
+									<input type="text" class="form-control" name="password"
 										placeholder="密码">
 								</div>
 							</div>
@@ -309,14 +330,14 @@
 							<div class="form-group">
 								<label class="col-sm-2 control-label">电话</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="telphone"
+									<input type="text" class="form-control" name="telphone"
 										placeholder="电话">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-2 control-label">邮箱</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="email"
+									<input type="text" class="form-control" name="email"
 										placeholder="邮箱">
 								</div>
 							</div>
@@ -325,7 +346,7 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default"
 							data-dismiss="modal">关闭</button>
-						<button type="button" class="btn btn-primary" onclick="parent.callSubMethod('addUserForm')">保存</button>
+						<button type="button" class="btn btn-primary" onclick="addUser()">保存</button>
 					</div>
 				</div>
 

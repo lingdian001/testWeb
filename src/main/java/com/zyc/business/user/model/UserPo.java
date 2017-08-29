@@ -5,7 +5,7 @@ import com.zyc.sys.base.model.BasePO;
 
 public class UserPo extends BasePO {
 	private String loginId;
-	private String passward;
+	private String password;
 	private String userName;
 	private String sex;
 	private String age;
@@ -22,10 +22,6 @@ public class UserPo extends BasePO {
 
 	public String getLoginId() {
 		return loginId;
-	}
-
-	public String getPassward() {
-		return passward;
 	}
 
 	public String getSex() {
@@ -52,10 +48,6 @@ public class UserPo extends BasePO {
 		this.loginId = loginId;
 	}
 
-	public void setPassward(String passward) {
-		this.passward = passward;
-	}
-
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
@@ -66,6 +58,14 @@ public class UserPo extends BasePO {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }
