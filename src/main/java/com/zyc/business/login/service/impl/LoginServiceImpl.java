@@ -24,7 +24,7 @@ public class LoginServiceImpl implements ILoginService{
 	public UserPo login(String loginId,String passward) {
 		Map<String, String> param = new HashMap<String,String>();
 		param.put("loginId", loginId);
-		param.put("passward", passward);
+		param.put("password", passward);
 		return loginDao.findByLoginId(param);
 	}
 

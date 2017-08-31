@@ -29,7 +29,7 @@
       
     <!-- 保存用户信息 -->
     <insert id="save" parameterType="com.zyc.business.user.model.UserPo">  
-        insert into sys_user(login_id,user_name,telphone,email) values(#{loginId},#{userName},#{telphone},#{email})  
+        insert into sys_user(login_id,user_name,password,telphone,email) values(#{loginId},#{userName},#{password},#{telphone},#{email})  
     </insert>  
       
     <!-- 更新用户信息 -->
@@ -42,7 +42,7 @@
         	password=#{password},
         </if>
         <if test="telphone !=null and telphone !='' ">
-        	telphone=#{telphone} 
+        	telphone=#{telphone},
         </if>
         <if test="email !=null and email !='' ">
         	email=#{email} 

@@ -19,6 +19,7 @@
 	<script src="<%=baseUrl%>/js/bootstrap-3.0.3/plugins/bootstrapvalidator/bootstrapValidator.min.js" type="text/javascript"></script> 
 	
 	<script src="<%=baseUrl%>/js/util/bootstrapUtil.js" type="text/javascript"></script>
+	<script src="<%=baseUrl%>/js/util/pub.js" type="text/javascript"></script>
 	
 	<script type="text/javascript">
 		var projectUrl;

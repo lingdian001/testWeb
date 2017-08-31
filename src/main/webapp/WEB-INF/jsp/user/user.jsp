@@ -209,13 +209,14 @@
 		function addUser(){
 			$.ajax({
 				type :'POST',
-		        url : projectUrl+'',
+		        url : projectUrl+'/user/saveUser.do',
 		        data : $('#addUserForm',window.parent.document).serializeArray(),
 		        dataType : "json",
 		        cache : false,
 		        success : function(re){
-		        	if(re==true){
+		        	if(re.isSuccess==true){
 		        		alert('success');
+		        		$("#mymodal").modal();
 		        	}else{
 		        		alert('error');
 		        	}
@@ -346,7 +347,7 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default"
 							data-dismiss="modal">关闭</button>
-						<button type="button" class="btn btn-primary" onclick="addUser()">保存</button>
+						<button type="button" class="btn btn-primary" onclick="callSubMethod('addUser')">保存</button>
 					</div>
 				</div>
 

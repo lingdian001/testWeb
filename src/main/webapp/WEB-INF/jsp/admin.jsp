@@ -34,21 +34,11 @@
 				}else{
 					navsHtml+='<li>'+navs[i]+'</li>';
 				}
-				
 			}
 			$('#breadcrumb').html(navsHtml);
 		}
 		
-		/**根据html内容，弹出模态窗口**/		
-		function openMainModal(contentHtml){
-			var aa=$("#mainModal .modal-content").html(contentHtml);
-			$("#mainModal").modal({ backdrop: 'static'});
-		}
 		
-		/**调用子页面方法**/
-		function callSubMethod(methodName){
-			document.getElementById("iframePage").contentWindow.eval(methodName+'()');
-		}
 	
 	</script>
 </head>
@@ -79,7 +69,7 @@
 							</a>
 							<ul id="userFun" class="nav nav-list collapse secondmenu" style="height: 0px;">
 								<li>
-									<a href="#" onclick="changeTab('系统管理,用户管理','user/user')">
+									<a href="#" onclick="changeTab('系统管理,用户管理','user/index')">
 									<i class="glyphicon glyphicon-user"></i>用户管理</a>
 								</li>
 								<li>
